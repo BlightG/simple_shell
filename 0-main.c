@@ -7,7 +7,9 @@
 int main(void)
 {
 	int core;
+	int isatty_num;
 	size_t buffersize;
+	ssize_t nread;
 	char *buffer;
 	char **ddbuffer;
 
@@ -23,12 +25,13 @@ int main(void)
 	{
 		fflush(stdin);
 		clear(buffer);
-		write(1, "#", 2);
-		getline(&buffer, &buffersize, stdin);
-		if (buffer == NULL)
+		isatty_num = isatty(0);
+		if (isatty_num == 1)
+			write(1, "#", 2);
+		nread = getline(&buffer, &buffersize, stdin);
+		if (buffer == NULL || nread == -1)
 		{
 			free_grid(ddbuffer);
-			perror("Error: ");
 			break;
 		}
 		ddbuffer = conact(buffer, &core);
