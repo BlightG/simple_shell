@@ -11,5 +11,5 @@ void clear(char *);
 char **conact(char *, int *);
 void exece(char **);
 void free_grid(char **);
-
+char  *trim(char *);
 #endif

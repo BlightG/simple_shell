@@ -45,12 +45,13 @@ char **conact(char *str, int *core)
 	char *piece;
 	char **conact;
 
+	str = trim(str);
 	if (checkconact(str, &delimcount, core) == 0)
 		return (NULL);
 	conact = malloc(sizeof(char *) * (delimcount + 2));
 	if (conact == NULL)
 	{
-		free(conact);
+		free_grid(conact);
 		perror("Error:");
 		return (NULL);
 	}
@@ -58,6 +59,7 @@ char **conact(char *str, int *core)
 	piece = strtok(str, " ");
 	while (piece != NULL)
 	{
+		printf("in loop");
 		conact[i] = malloc(sizeof(char) * strlen(piece));
 		if (conact[i] == NULL)
 		{
@@ -77,5 +79,18 @@ char **conact(char *str, int *core)
 	}
 	conact[i] = "\n";
 	conact[i] = '\0';
+	if (piece)
+		free(piece);
 	return (conact);
+}
+
+char *trim(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i] != 0 && str[i] == ' ')
+		str++;
+
+	return str;
 }

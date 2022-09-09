@@ -23,7 +23,6 @@ int main(void)
 	while (core)
 	{
 		fflush(stdin);
-		clear(buffer);
 		isatty_num = isatty(0);
 		if (isatty_num == 1)
 			write(1, "#", 2);
