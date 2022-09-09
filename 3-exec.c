@@ -11,16 +11,26 @@ void exece(char **str)
 
 	if (str != NULL)
 	{
-		pid = fork();
-		if (pid == 0)
+		if (access(str[0], F_OK) == -1)
+			perror("Error:" );
+		else
 		{
-			if (execve(str[0], str, environ) == -1)
+			pid = fork();
+			if (pid == 0)
+			{
+				if (execve(str[0], str, environ) == -1)
+				{
+					perror("Error: ");
+					exit(100);
+				}
+			}
+			else if (pid == -1)
 			{
 				perror("Error: ");
-				exit(100);
+				exit(102);
 			}
+			else
+				wait(NULL);
 		}
-		else
-			wait(NULL);
 	}
 }
