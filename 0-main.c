@@ -6,7 +6,7 @@
 */
 int main(void)
 {
-	int core;
+	int core, isatty_num;
 	size_t buffersize;
 	ssize_t nread;
 	char *buffer;
@@ -24,6 +24,7 @@ int main(void)
 	{
 		fflush(stdin);
 		clear(buffer);
+		isatty_num = isatty(0);
 		if (isatty_num == 1)
 			write(1, "#", 2);
 		nread = getline(&buffer, &buffersize, stdin);
