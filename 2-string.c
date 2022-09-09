@@ -59,7 +59,6 @@ char **conact(char *str, int *core)
 	piece = strtok(str, " ");
 	while (piece != NULL)
 	{
-		printf("in loop");
 		conact[i] = malloc(sizeof(char) * strlen(piece));
 		if (conact[i] == NULL)
 		{
@@ -83,6 +82,14 @@ char **conact(char *str, int *core)
 		free(piece);
 	return (conact);
 }
+
+
+/**
+ * trim - removes the spaces at the beggining of a string.
+ *
+ * @str: string to be trimmed.
+ * Return: trimmed string.
+ */
 
 char *trim(char *str)
 {
