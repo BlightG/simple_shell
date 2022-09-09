@@ -24,7 +24,8 @@ int main(void)
 	{
 		fflush(stdin);
 		clear(buffer);
-		write(1, "#", 2);
+		if (isatty == 1)
+			write(1, "#", 2);
 		nread = getline(&buffer, &buffersize, stdin);
 		if (nread == -1)
 			break;
